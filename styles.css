@@ -1,12 +1,13 @@
 :root {
   --primary: #25242b;
   --secondary: #f2f5ef;
+  font-family: Inter, sans-serif;
+  font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
 }
 
 body {
   background-color: var(--secondary);
   color: var(--primary);
-  font: Inter
 }
 
 header,
@@ -17,6 +18,11 @@ section {
   justify-content: center;
   align-items: center;
   padding: 2vh;
+}
+
+header {
+  font-weight: 700;
+  font-size: 48px;
 }
 
 article {
