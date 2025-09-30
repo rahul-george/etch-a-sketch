@@ -93,6 +93,8 @@ const gridSizeInput = document.querySelector("input[name=gridSize]");
 const gridSizeLabel = document.querySelector("#gridSizeLabel");
 const clearSketchPadButton = document.querySelector("#clearSketchPad");
 const colorizeCheckBoxInput = document.querySelector("#colorize");
+const currentYearLabel = document.querySelector("#currentYear");
+currentYearLabel.textContent = new Date().getFullYear();
 
 gridSizeInput.addEventListener("input", resizeGrid);
 clearSketchPadButton.addEventListener("click", clearSketchPad);
