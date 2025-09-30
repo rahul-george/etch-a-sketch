@@ -17,21 +17,39 @@ function createNode(flex_basis, bgColor) {
   originalDiv.style = `flex-basis: ${flex_basis}%; 
   /*background-color: ${bgColor};*/ 
   opacity: 0`; // Other styles are injected via CSS
-  originalDiv.addEventListener("mouseenter", paint);
-  originalDiv.addEventListener("mousedown", (e) => {
-    MOUSEUP = false;
-  });
-  originalDiv.addEventListener("mouseup", (e) => {
-    MOUSEUP = true;
-  });
+  attachEventListeners(originalDiv);
   return originalDiv;
 }
+
+function attachEventListeners(node) {
+  node.addEventListener("mouseenter", paint);
+  node.addEventListener("mousedown", (e) => {
+    MOUSEUP = false;
+    e.stopPropagation();
+  });
+  node.addEventListener("mouseup", (e) => {
+    MOUSEUP = true;
+  });
+}
+
+/* Alternate implementation using clone below*/
+const referenceDiv = document.createElement("div");
+referenceDiv.role = "gridCell";
+referenceDiv.style.opacity = 0;
+function cloneNode(flex_basis, bgColor) {
+  referenceDiv.style.flexBasis = `${flex_basis}%`;
+  const node = referenceDiv.cloneNode(true);
+  attachEventListeners(node);
+  return node;
+}
+/* Alternate implementation using clone above */
 
 function generateDivs(size = 16, bgColor) {
   const flex_basis = 100 / size;
   const documentFragment = document.createDocumentFragment();
   for (let i = 0; i < size * size; i++) {
-    const gridCell = createNode(flex_basis, bgColor);
+    // const gridCell = createNode(flex_basis, bgColor);
+    const gridCell = cloneNode(flex_basis, bgColor);
     documentFragment.appendChild(gridCell);
   }
   container.appendChild(documentFragment);
