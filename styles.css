@@ -3,7 +3,7 @@
   --secondary: #f2f5ef;
   font-family: Inter, sans-serif;
   font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
-  font-size: 20px;
+  font-size: 16px;
   padding: 0;
 }
 
@@ -27,7 +27,11 @@ footer {
 
 header {
   font-weight: 700;
-  font-size: 2.4rem;
+  font-size: 3rem;
+}
+
+footer {
+  font-size: 0.8rem;
 }
 
 main {
@@ -40,8 +44,9 @@ main {
 .controls {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  padding: 1em 0;
 }
 
 .sketchpad {
