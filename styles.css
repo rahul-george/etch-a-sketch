@@ -3,43 +3,74 @@
   --secondary: #f2f5ef;
   font-family: Inter, sans-serif;
   font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
+  font-size: 20px;
+  padding: 0;
 }
 
 body {
   background-color: var(--secondary);
   color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
 header,
-footer,
-section {
+footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2vh;
+  padding: 0.5em;
 }
 
 header {
   font-weight: 700;
-  font-size: 48px;
+  font-size: 2.4rem;
 }
 
-article {
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.controls {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.sketchcontrols_section {
-  flex-basis: 1;
-  flex-shrink: 4;
-  flex-grow: 1;
+.sketchpad {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
 }
 
-.sketchpad_section {
-  flex-basis: 1;
-  flex-shrink: 1;
-  flex-grow: 4;
+.container {
+  border: 1px solid var(--primary);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  /* 
+  The flex-basis: 624px sets basic size for the flex container, 
+  and flex-grow: 0 ensures, it doesn't stretch and take whole of page. 
+  flex-shrink: 1 ensures, it shrinks when size is reduced. 
+  */
+  flex: 0 1 624px;
+}
+
+.container div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* flex-basis will be added programmatically via javascript */
+  /* flex-basis: 25%; */
+  aspect-ratio: 1;
 }

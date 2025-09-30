@@ -10,14 +10,16 @@
   </head>
   <body>
     <header>Etch-A-Sketch</header>
-    <article name="main">
-      <section name="controls" class="sketchcontrols_section">
+    <main>
+      <section name="controls" class="controls">
         <p>Controls</p>
       </section>
-      <section name="sketchpad" class="sketchpad_section">
-        <p>Sketchpad</p>
+      <section name="sketchpad" class="sketchpad">
+        <div class="container">
+          <!-- dynamically create smaller divs for sketchpad -->
+        </div>
       </section>
-    </article>
+    </main>
     <footer>
       <span>
         ©
@@ -28,4 +30,5 @@
       </span>
     </footer>
   </body>
+  <script src="./main.js"></script>
 </html>
