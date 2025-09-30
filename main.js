@@ -3,13 +3,21 @@ let SELECTED_COLOR = "#25242b";
 // flags
 let MOUSEUP = true;
 
+function generateRandomInteger(min = 0, max = 255) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+function generateRandomColor() {
+  return `RGB(${generateRandomInteger()}, ${generateRandomInteger()}, ${generateRandomInteger()})`;
+}
+
 function createNode(flex_basis, bgColor) {
   const originalDiv = document.createElement("div");
   originalDiv.role = "gridCell";
   originalDiv.style = `flex-basis: ${flex_basis}%; 
-  background-color: ${bgColor}; 
+  /*background-color: ${bgColor};*/ 
   opacity: 0`; // Other styles are injected via CSS
-  originalDiv.addEventListener("mouseenter", paintDivBlack);
+  originalDiv.addEventListener("mouseenter", paint);
   originalDiv.addEventListener("mousedown", (e) => {
     MOUSEUP = false;
   });
@@ -51,13 +59,28 @@ function redrawGrid(gridSize, bgColor) {
   updateGridSizeLabel(gridSize);
 }
 
-function paintDivBlack(e) {
+function getColor() {
+  if (colorizeCheckBoxInput.checked) {
+    return generateRandomColor();
+  } else {
+    return SELECTED_COLOR;
+  }
+}
+
+function paint(e) {
   /* If mouse is up ignore the mousehover */
   if (MOUSEUP) {
     return;
   }
+
   const target = e.target;
+  /* If the cell is visited for the first itme a color is assigned via getColor, 
+  otherwise up the opacity of the cell backgroundColor */
   target.style.opacity = parseFloat(target.style.opacity) + 0.1;
+  if (target.style.backgroundColor === "") {
+    target.style.backgroundColor = getColor();
+  }
+
   e.stopPropagation();
 }
 
@@ -69,6 +92,7 @@ const container = document.querySelector(".container");
 const gridSizeInput = document.querySelector("input[name=gridSize]");
 const gridSizeLabel = document.querySelector("#gridSizeLabel");
 const clearSketchPadButton = document.querySelector("#clearSketchPad");
+const colorizeCheckBoxInput = document.querySelector("#colorize");
 
 gridSizeInput.addEventListener("input", resizeGrid);
 clearSketchPadButton.addEventListener("click", clearSketchPad);
