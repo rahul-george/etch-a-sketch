@@ -12,7 +12,19 @@
     <header>Etch-A-Sketch</header>
     <main>
       <section name="controls" class="controls">
-        <p>Controls</p>
+        <div>
+          <label for="gridSize">Grid Size</label>
+          <span>(<label for="gridSize" id="gridSizeLabel">16x16</label>)</span>
+          <input
+            type="range"
+            id="gridSize"
+            name="gridSize"
+            min="16"
+            max="30"
+            step="1"
+            value="16"
+          />
+        </div>
       </section>
       <section name="sketchpad" class="sketchpad">
         <div class="container">
