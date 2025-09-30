@@ -38,8 +38,16 @@ function removeDivs() {
 
 function resizeGrid(e) {
   let gridSize = parseInt(e.target.value);
+  redrawGrid(gridSize, SELECTED_COLOR);
+}
+
+function clearSketchPad(e) {
+  redrawGrid(parseInt(gridSizeInput.value), SELECTED_COLOR);
+}
+
+function redrawGrid(gridSize, bgColor) {
   removeDivs();
-  generateDivs(gridSize, SELECTED_COLOR);
+  generateDivs(gridSize, bgColor);
   updateGridSizeLabel(gridSize);
 }
 
@@ -60,7 +68,9 @@ function updateGridSizeLabel(gridSize) {
 const container = document.querySelector(".container");
 const gridSizeInput = document.querySelector("input[name=gridSize]");
 const gridSizeLabel = document.querySelector("#gridSizeLabel");
+const clearSketchPadButton = document.querySelector("#clearSketchPad");
 
 gridSizeInput.addEventListener("input", resizeGrid);
+clearSketchPadButton.addEventListener("click", clearSketchPad);
 
 generateDivs(16, SELECTED_COLOR);
