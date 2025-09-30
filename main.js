@@ -71,6 +71,10 @@ function clearSketchPad(e) {
   redrawGrid(parseInt(gridSizeInput.value), SELECTED_COLOR);
 }
 
+function colorizeEnabled(e) {
+  redrawGrid(parseInt(gridSizeInput.value), SELECTED_COLOR);
+}
+
 function redrawGrid(gridSize, bgColor) {
   removeDivs();
   generateDivs(gridSize, bgColor);
@@ -116,5 +120,9 @@ currentYearLabel.textContent = new Date().getFullYear();
 
 gridSizeInput.addEventListener("input", resizeGrid);
 clearSketchPadButton.addEventListener("click", clearSketchPad);
+colorizeCheckBoxInput.addEventListener("click", colorizeEnabled);
 
+const start = performance.now();
 generateDivs(16, SELECTED_COLOR);
+const end = performance.now();
+console.log(`Execution time: ${end - start} ms`);
